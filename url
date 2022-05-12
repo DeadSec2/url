@@ -1,0 +1,64 @@
+XML
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/e1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="118dp"
+        android:ems="10"
+        android:hint="enter the Url"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/b1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="28dp"
+        android:text="click me"
+        app:layout_constraintStart_toStartOf="@+id/e1"
+        app:layout_constraintTop_toBottomOf="@+id/e1" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+Java 
+
+package com.example.linkurl;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.view.View;
+import android.net.Uri;
+import android.content.Intent;
+
+
+public class MainActivity extends AppCompatActivity {
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+       EditText e1 = (EditText) findViewById(R.id.e1);
+       Button b1=(Button)findViewById(R.id.b1);
+       b1.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               String url = e1.getText().toString();
+               Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+               startActivity(intent);
+           }
+       });
+   }
+}
+
